@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garfield Characters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 40px;
+        }
+
+        select {
+            font-size: 16px;
+            padding: 5px 10px;
+            margin-bottom: 20px;
+        }
+
+        #characterImage {
+            display: block;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <select id="characterSelect"></select>
+    <br>
+    <img id="characterImage" src="" alt="Character Image">
+
+    <script>
+        const characters = ["Garfield", "Odie", "Nermal", "Pooky", "Jon"];
+        const select = document.getElementById("characterSelect");
+        const image = document.getElementById("characterImage");
+
+        characters.forEach(function (name) {
+            const option = document.createElement("option");
+            option.value = name;
+            option.textContent = name;
+            select.appendChild(option);
+        });
+
+        function updateImage() {
+            const selected = select.value;
+            image.src = "images/" + selected + ".jpg";
+            image.alt = selected;
+        }
+
+        select.addEventListener("change", updateImage);
+
+        // Display the first character's image on load
+        updateImage();
+    </script>
+</body>
+</html>
