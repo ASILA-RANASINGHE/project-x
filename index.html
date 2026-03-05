@@ -30,21 +30,27 @@
     <img id="characterImage" src="" alt="Character Image">
 
     <script>
-        const characters = ["Garfield", "Odie", "Nermal", "Pooky", "Jon"];
+        const characters = [
+            { name: "Garfield", file: "image/gafiled.jpg" },
+            { name: "Odie",     file: "image/oide.jpg" },
+            { name: "Nermal",   file: "image/Nermal.jpg" },
+            { name: "Pooky",    file: "image/poky.jpeg" },
+            { name: "Jon",      file: "image/jon.jpg" }
+        ];
         const select = document.getElementById("characterSelect");
         const image = document.getElementById("characterImage");
 
-        characters.forEach(function (name) {
+        characters.forEach(function (character) {
             const option = document.createElement("option");
-            option.value = name;
-            option.textContent = name;
+            option.value = character.file;
+            option.textContent = character.name;
             select.appendChild(option);
         });
 
         function updateImage() {
-            const selected = select.value;
-            image.src = "images/" + selected + ".jpg";
-            image.alt = selected;
+            const selected = select.options[select.selectedIndex];
+            image.src = select.value;
+            image.alt = selected.textContent;
         }
 
         select.addEventListener("change", updateImage);
